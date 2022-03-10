@@ -17,5 +17,11 @@ pipeline {
                 echo 'Deploying'
             }
         }
+      stage('Post-Build-Actions') {
+            steps {
+                echo 'triggering another project '
+                build 'TestJob2'
+            }
+        }  
     }
 }
