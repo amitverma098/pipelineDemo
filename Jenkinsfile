@@ -20,7 +20,7 @@ pipeline {
       stage('Post-Build-Actions') {
             steps {
                 echo 'triggering another project '
-                build 'TestJob2'
+                build 'TestJob01'
             }
         }  
     }
