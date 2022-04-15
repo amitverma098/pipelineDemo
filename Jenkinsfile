@@ -33,7 +33,9 @@ pipeline {
             }
         } 
      stage ('writeFileToJson') {
-        script {
+	     steps {
+                echo 'writing'
+		        script {
           def someMap = [
               'name' : "john",
               'surname' : "doe"
@@ -43,7 +45,7 @@ pipeline {
           def file = new File("$WORKSPACE/people.json")
           file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))
         }
-         
+            }   
         }  
     }
 }
