@@ -31,22 +31,18 @@ pipeline {
             steps {
                 echo 'Deploying'
             }
-        }
-      stage('Post-Build-Actions') {
-            steps {
-                echo 'triggering another project '
-                build 'TestJob01'
-            }
-          
         } 
      stage ('writeFileToJson') {
-         steps {
-         def data = JSONObject.fromObject([
-        a:"REACT_NATIVE_VERSION: ${REACT_NATIVE_VERSION}".toString()
-    ])
-writeJSON(file: 'message1.json', json: data)
-             
-         }
+        script {
+          def someMap = [
+              'name' : "john",
+              'surname' : "doe"
+          ]
+          def json = new groovy.json.JsonBuilder()
+          json "people": someMap
+          def file = new File("$WORKSPACE/people.json")
+          file.write(groovy.json.JsonOutput.prettyPrint(json.toString()))
+        }
          
         }  
     }
