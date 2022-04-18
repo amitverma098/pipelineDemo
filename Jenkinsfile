@@ -32,7 +32,28 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
-                  def amap = ['REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
+                  def amap = [
+                  'cli': ">= 0.38.3",  
+                     'build': {
+                        'development' :{
+                          'node': "14.15.0",
+                          'developmentClient': false,
+                          'releaseChannel': "development",
+                          'distribution': "internal",
+                             'env' :{
+                                 'REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
+                                 'REACT_APP_AMAZON_COGNITO_CLIENT_ID': "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
+                                 'REACT_APP_API_KEY' :"${REACT_APP_API_KEY}",
+                                 'REACT_APP_API_URL' :"${REACT_APP_API_URL}",
+                                 'REACT_APP_MAINTENANCE_MODE' : "${REACT_APP_MAINTENANCE_MODE}",
+                                 'REACT_APP_PARSE_URL': "${REACT_APP_PARSE_URL}",
+                                 'REACT_APP_PARSE_APP_ID': "${REACT_APP_PARSE_APP_ID}",
+                                 'REACT_APP_PARSE_CLIENT_KEY': "${REACT_APP_PARSE_CLIENT_KEY}"
+                             }
+                                
+                        }
+                     }  
+                  'REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
                   'REACT_APP_AMAZON_COGNITO_CLIENT_ID': "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
                   'REACT_APP_API_KEY' :"${REACT_APP_API_KEY}",
                   'REACT_APP_API_URL' :"${REACT_APP_API_URL}",
