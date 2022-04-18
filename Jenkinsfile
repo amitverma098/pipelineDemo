@@ -32,16 +32,37 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
-                  def amap = [
-                  'cli': ">= 0.38.3",  
-                  'REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
-                  'REACT_APP_AMAZON_COGNITO_CLIENT_ID': "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
-                  'REACT_APP_API_KEY' :"${REACT_APP_API_KEY}",
-                  'REACT_APP_API_URL' :"${REACT_APP_API_URL}",
-                  'REACT_APP_MAINTENANCE_MODE' : "${REACT_APP_MAINTENANCE_MODE}",
-                  'REACT_APP_PARSE_URL': "${REACT_APP_PARSE_URL}",
-                  'REACT_APP_PARSE_CLIENT_KEY': "${REACT_APP_PARSE_CLIENT_KEY}"]
-                     writeJSON file: 'eas.json', json: amap
+            def jsonStr = '''{
+               "count": 4,
+               "max": "12",
+               "min": 0,
+               "details": [{
+               "goBus": {
+               "first": 12800,
+               "second": 11900,
+               "third": 12800
+               },
+               "goAir": {
+               "first": 12800,
+               "second": 11900,
+               "third": 12800
+               },
+               "gotTrain": {
+               "first": 12800,
+               "second": 11900,
+               "third": 12800,
+               "fourth": 13000
+               },
+               "sell": true,
+               "darn": 2,
+               "rate": [{
+               "busRate": 11900,
+               "flag": false,
+               "percent": 0
+            }]
+            }]
+            }'''
+                     writeJSON file: 'eas.json', json: jsonStr
                      def read = readJSON file: 'eas.json'
                }
            }
