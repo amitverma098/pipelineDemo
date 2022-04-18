@@ -59,7 +59,6 @@ pipeline {
                   'REACT_APP_API_URL' :"${REACT_APP_API_URL}",
                   'REACT_APP_MAINTENANCE_MODE' : "${REACT_APP_MAINTENANCE_MODE}",
                   'REACT_APP_PARSE_URL': "${REACT_APP_PARSE_URL}",
-                  'REACT_APP_PARSE_APP_ID': "${REACT_APP_PARSE_APP_ID}",
                   'REACT_APP_PARSE_CLIENT_KEY': "${REACT_APP_PARSE_CLIENT_KEY}"]
                      writeJSON file: 'eas.json', json: amap
                      def read = readJSON file: 'eas.json'
