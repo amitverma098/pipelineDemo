@@ -37,8 +37,8 @@ pipeline {
                       "max": "12",
                       "min": 0,
                       "details": {
-                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
-                          "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}"
+                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}".toString(),
+                          "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}".toString()
                       }
                       }'''
                      writeJSON file: 'eas.json', json: jsonStr
