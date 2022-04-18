@@ -1,5 +1,8 @@
 pipeline {
    agent { label 'master' }
+   environment {
+   REACT_APP_AMAZON_COGNITO_USERPOOL_ID = """ca-central-1_8mKgR6sxB"""
+   }
    stages {
        stage('write') {
            steps {
@@ -22,7 +25,7 @@ pipeline {
        stage('writeToJson'){
            steps {
                script {
-                    def amap = ['something': 'my datas',
+                  def amap = ['REACT_APP_AMAZON_COGNITO_USERPOOL_ID': '${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}',
                     'size': 3,
                     'isEmpty': false]
                      writeJSON file: 'data.json', json: amap
