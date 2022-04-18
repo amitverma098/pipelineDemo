@@ -37,7 +37,7 @@ pipeline {
                       "max": "12",
                       "min": 0,
                       "details": {
-                          "goBus": "AmitGo"
+                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID": "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}"
                       }
                       }'''
                      writeJSON file: 'eas.json', json: jsonStr
