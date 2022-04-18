@@ -19,5 +19,20 @@ pipeline {
                }
            }
        }
+       stage('writeToJson'){
+           steps {
+               script {
+                    def amap = ['something': 'my datas',
+                    'size': 3,
+                    'isEmpty': false]
+                     writeJSON file: 'data.json', json: amap
+                     def read = readJSON file: 'data.json'
+
+                     assert read.something == 'my datas'
+                     assert read.size == 3
+                     assert read.isEmpty == false
+               }
+           }
+       }
    }
 }
