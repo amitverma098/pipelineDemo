@@ -25,7 +25,7 @@ pipeline {
        stage('writeToJson'){
            steps {
                script {
-                  def amap = ['REACT_APP_AMAZON_COGNITO_USERPOOL_ID': ${REACT_APP_AMAZON_COGNITO_USERPOOL_ID},
+                  def amap = ['REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
                     'size': 3,
                     'isEmpty': false]
                      writeJSON file: 'data.json', json: amap
