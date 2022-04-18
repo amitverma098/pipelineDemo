@@ -34,10 +34,6 @@ pipeline {
                   script {
                   def amap = [
                   'cli': ">= 0.38.3",  
-                     'build': {
-                        "text": "Amitk",
-                        "country": "India"  
-                     },
                   'REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
                   'REACT_APP_AMAZON_COGNITO_CLIENT_ID': "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
                   'REACT_APP_API_KEY' :"${REACT_APP_API_KEY}",
