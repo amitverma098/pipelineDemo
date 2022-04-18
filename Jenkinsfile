@@ -30,10 +30,6 @@ pipeline {
                     'isEmpty': false]
                      writeJSON file: 'data.json', json: amap
                      def read = readJSON file: 'data.json'
-
-                     assert read.something == '${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}'
-                     assert read.size == 3
-                     assert read.isEmpty == false
                }
            }
        }
