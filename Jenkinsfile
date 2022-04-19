@@ -32,15 +32,49 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
-                  def amap = [{
-                      "count": 4,
-                      "max": "12",
-                      "min": 0,
-                      "details" : {
-                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
-                          "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}"
+                 def amap = [
+                  'cli': ">= 0.38.3",
+                  'build': {
+                      'development' :{
+                          'node': "14.15.0",
+                          'developmentClient': false,
+                          'releaseChannel': "development",
+                          'distribution': "internal",
+                          'env': {
+                            'REACT_APP_AMAZON_COGNITO_USERPOOL_ID': "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
+                            'REACT_APP_AMAZON_COGNITO_CLIENT_ID': "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
+                            'REACT_APP_API_KEY' :"${REACT_APP_API_KEY}",
+                            'REACT_APP_API_URL' :"${REACT_APP_API_URL}",
+                            'REACT_APP_MAINTENANCE_MODE' : "${REACT_APP_MAINTENANCE_MODE}",
+                            'REACT_APP_PARSE_URL': "${REACT_APP_PARSE_URL}",
+                            'REACT_APP_PARSE_APP_ID': "${REACT_APP_PARSE_APP_ID}",
+                            'REACT_APP_PARSE_CLIENT_KEY': "${REACT_APP_PARSE_CLIENT_KEY}",
+                            'WEBSITES3BUCKET' : "${WEBSITES3BUCKET}"
+                          }
+                      },
+                      'preview': {
+                          'android': {
+                              'buildType': 'apk'
+                          },
+                          'ios': {
+                              'simulator': true
+                          },
+                          'distribution': 'internal'
+                      },
+                      'production': {
+                          'releaseChannel' : "live",
+                          'ios': {
+                              'autoIncrement': 'version'
+                          },
+                          'env': {
+                              'REACT_NATIVE_API_URL' : "${REACT_NATIVE_API_URL}"
+                          }
+                        
                       }
-                      }]
+                  },
+                  'submit': {
+                      'development': {}
+                  }]
                      writeJSON file: 'eas.json', json: amap
                      def read = readJSON file: 'eas.json'
                }
