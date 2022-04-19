@@ -36,7 +36,7 @@ pipeline {
                       "count": 4,
                       "max": "12",
                       "min": 0,
-                      "details": {
+                      "details" : {
                           "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
                           "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}"
                       }
