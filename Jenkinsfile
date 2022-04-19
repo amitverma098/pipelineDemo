@@ -32,7 +32,7 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
-                 def amap = [
+                     def amap = [{
                   'cli': ">= 0.38.3",
                   'build': {
                       'development' :{
@@ -74,7 +74,8 @@ pipeline {
                   },
                   'submit': {
                       'development': {}
-                  }]
+                  }
+                     }]
                      writeJSON file: 'eas.json', json: amap
                      def read = readJSON file: 'eas.json'
                }
