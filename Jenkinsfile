@@ -15,7 +15,7 @@ pipeline {
        stage('write') {
            steps {
                script {
-                    def jsonStr = '''{
+                    def jsonStr = "{
                       "count": 4,
                       "max": "12",
                       "min": 0,
@@ -23,7 +23,8 @@ pipeline {
                           "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : \"${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}\",
                           "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "\"${REACT_APP_AMAZON_COGNITO_CLIENT_ID}\"
                       }
-                      }'''
+                      }"
+                  
                    writeFile(file: 'zorg.txt', text: jsonStr)
                    sh "ls -l"
                }
@@ -45,8 +46,7 @@ pipeline {
                          year: "2018",
                          timestamp: "2018-03-08T00:00:00",
                          tags: [ "person", "employee"],
-                         grade: 3.14,
-                         bus : { color: "red", dist: 'blue'}     
+                         grade: 3.14
                      ]  
                      def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(data))
                      writeJSON file: 'eas.json', json: json_beauty
