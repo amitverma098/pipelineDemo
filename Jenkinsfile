@@ -101,12 +101,12 @@ pipeline {
            steps {
                   script {
                    def data = [
-                         name: "Foo Bar",
+                         name: "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
                          year: "2018",
                          timestamp: "2018-03-08T00:00:00",
                          tags: [ "person", "employee"],
                          grade: 3.14,
-                         another : [ name : "tim" ,month : "jan"]
+                      another : [ name : "tim" ,month : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}"]
                      ]  
                      def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(data))
                      writeJSON file: 'eas.json', json: json_beauty
