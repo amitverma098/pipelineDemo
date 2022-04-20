@@ -15,15 +15,70 @@ pipeline {
        stage('write') {
            steps {
                script {
-                    def jsonStr = "{
-                      "count": 4,
-                      "max": "12",
-                      "min": 0,
-                      "details": {
-                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : \"${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}\",
-                          "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "\"${REACT_APP_AMAZON_COGNITO_CLIENT_ID}\"
-                      }
-                      }"
+                    def jsonStr = '''{
+                                     "Orders": [{
+                                             "OrderID": 2503,
+                                             "Customer": "Peter",
+                                             "Country": "UK",
+                                             "Items": [{
+                                                     "ProductID": "P07",
+                                                     "UnitPrice": 120,
+                                                     "Quantity": 10,
+                                                     "Variants": [{
+                                                             "Color": "Green",
+                                                             "Quantity": 4
+                                                         }, {
+                                                             "Color": "Yellow",
+                                                             "Quantity": 6
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         }, {
+                                             "OrderID": 2502,
+                                             "Customer": "Bob",
+                                             "Country": "UK",
+                                             "Items": [{
+                                                     "ProductID": "P05",
+                                                     "UnitPrice": 50,
+                                                     "Quantity": 5,
+                                                     "Variants": [{
+                                                             "Color": "Blue",
+                                                             "Quantity": 2
+                                                         }, {
+                                                             "Color": "Red",
+                                                             "Quantity": 3
+                                                         }
+                                                     ]
+                                                 }, {
+                                                     "ProductID": "P06",
+                                                     "UnitPrice": 80,
+                                                     "Quantity": 1,
+                                                     "Variants": [{
+                                                             "Color": "Yellow",
+                                                             "Quantity": 1
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         }, {
+                                             "OrderID": 2501,
+                                             "Customer": "Alex",
+                                             "Country": "USA",
+                                             "Items": [{
+                                                     "ProductID": "P05",
+                                                     "UnitPrice": 50,
+                                                     "Quantity": 1,
+                                                     "Variants": [{
+                                                             "Color": "Blue",
+                                                             "Quantity": 1
+                                                         }
+                                                     ]
+                                                 }
+                                             ]
+                                         }
+                                     ]
+                                 }'''
                   
                    writeFile(file: 'zorg.txt', text: jsonStr)
                    sh "ls -l"
