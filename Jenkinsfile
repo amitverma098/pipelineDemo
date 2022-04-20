@@ -79,8 +79,8 @@ pipeline {
                                          }
                                      ]
                                  }'''
-                  
-                   writeFile(file: 'zorg.txt', text: jsonStr)
+                  def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(jsonStr))
+                   writeFile(file: 'zorg.txt', text: json_beauty)
                    sh "ls -l"
                }
            }
