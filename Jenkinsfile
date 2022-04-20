@@ -45,7 +45,8 @@ pipeline {
                          year: "2018",
                          timestamp: "2018-03-08T00:00:00",
                          tags: [ "person", "employee"],
-                         grade: 3.14
+                         grade: 3.14,
+                         bus : { color: "red", dist: 'blue'}     
                      ]  
                      def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(data))
                      writeJSON file: 'eas.json', json: json_beauty
