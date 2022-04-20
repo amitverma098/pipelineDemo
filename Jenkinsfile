@@ -14,9 +14,16 @@ pipeline {
        stage('write') {
            steps {
                script {
-                   def date = new Date()
-                   def data = "Hello World\nSecond line\n" + date
-                   writeFile(file: 'zorg.txt', text: data)
+                    def jsonStr = '''{
+                      "count": 4,
+                      "max": "12",
+                      "min": 0,
+                      "details": {
+                          "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
+                          "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}"
+                      }
+                      }'''
+                   writeFile(file: 'zorg.txt', text: jsonStr)
                    sh "ls -l"
                }
            }
@@ -34,11 +41,7 @@ pipeline {
                   script {
                    def amap = ['something': 'my datas',
                     'size': 3,
-                    'isEmpty': false,
-                               'default': {
-                                  'test' : 'first'
-                               }
-                                  ]
+                    'isEmpty': false]        ]
                      writeJSON file: 'eas.json', json: amap
                      def read = readJSON file: 'eas.json'
                }
