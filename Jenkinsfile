@@ -46,8 +46,7 @@ pipeline {
                          tags: [ "person", "employee"],
                          grade: 3.14
                      ]  
-                     def json_beauty = JsonOutput.prettyPrint(data)
-                     writeJSON file: 'eas.json', json: json_beauty
+                     writeJSON file: 'eas.json', json: data
                      def read = readJSON file: 'eas.json'
                }
            }
