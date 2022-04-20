@@ -39,6 +39,7 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
+                   import groovy.json.JsonOutput
                    def data = [
                          name: "Foo Bar",
                          year: "2018",
@@ -46,7 +47,8 @@ pipeline {
                          tags: [ "person", "employee"],
                          grade: 3.14
                      ]  
-                     writeJSON file: 'eas.json', json: data
+                     def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(data))
+                     writeJSON file: 'eas.json', json: json_beauty
                      def read = readJSON file: 'eas.json'
                }
            }
