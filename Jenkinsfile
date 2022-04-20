@@ -1,4 +1,5 @@
 import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 pipeline {
    agent { label 'master' }
    environment {
@@ -79,6 +80,9 @@ pipeline {
                                          }
                                      ]
                                  }'''
+                  def jsonSlurper = new JsonSlurper()
+                  cfg = jsonSlurper.parseText(json_str)
+                  writeJSON file: 'eas.json', json: cfg
                   def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(jsonStr))
                    writeFile(file: 'zorg.txt', text: json_beauty)
                    sh "ls -l"
