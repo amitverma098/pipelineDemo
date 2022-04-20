@@ -1,3 +1,4 @@
+import groovy.json.JsonOutput
 pipeline {
    agent { label 'master' }
    environment {
@@ -39,7 +40,6 @@ pipeline {
        stage('writeToJson'){
            steps {
                   script {
-                   import groovy.json.JsonOutput
                    def data = [
                          name: "Foo Bar",
                          year: "2018",
