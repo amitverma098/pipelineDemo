@@ -18,8 +18,8 @@ pipeline {
                script {
                     def jsonStr = '''{
                                      "Orders": [{
-                                             "OrderID": "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
-                                             "Customer": "${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}",
+                                             "OrderID": \"${REACT_APP_AMAZON_COGNITO_CLIENT_ID}\",
+                                             "Customer": \"${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}\",
                                              "Country": "UK",
                                              "Items": [{
                                                      "ProductID": "P07",
