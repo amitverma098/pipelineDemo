@@ -14,7 +14,7 @@ pipeline {
        stage('write') {
            steps {
                script {
-                    def jsonStr = '''{
+                    def jsonStr = '{
                       "count": 4,
                       "max": "12",
                       "min": 0,
@@ -22,7 +22,7 @@ pipeline {
                           "REACT_APP_AMAZON_COGNITO_USERPOOL_ID" : \"${REACT_APP_AMAZON_COGNITO_USERPOOL_ID}\",
                           "REACT_APP_AMAZON_COGNITO_CLIENT_ID" : "\"${REACT_APP_AMAZON_COGNITO_CLIENT_ID}\"
                       }
-                      }'''
+                      }'
                    writeFile(file: 'zorg.txt', text: jsonStr)
                    sh "ls -l"
                }
