@@ -42,7 +42,7 @@ pipeline {
                      def amap = ['something': 'my datas',
                     'size': 3,
                     'isEmpty': false,
-                     ['onething': 'yourdata','size': '4']]                   
+                     'another' : '[ 'onething' : 'your data' , 'size' : '5']' ]                  
                      writeJSON file: 'eas.json', json: data
                      def read = readJSON file: 'eas.json'
                }
