@@ -18,7 +18,7 @@ pipeline {
                script {
                     def jsonStr = '''{
                                      "Orders": [{
-                                             "OrderID": 2503,
+                                             "OrderID": "${REACT_APP_AMAZON_COGNITO_CLIENT_ID}",
                                              "Customer": "Peter",
                                              "Country": "UK",
                                              "Items": [{
@@ -80,11 +80,8 @@ pipeline {
                                          }
                                      ]
                                  }'''
-                  def jsonSlurper = new JsonSlurper()
-                  cfg = jsonSlurper.parseText(jsonStr) 
-                  writeJSON file: 'pas.json', json: cfg
                   def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(jsonStr))
-                   writeFile(file: 'zorg.txt', text: cfg)
+                   writeFile(file: 'zorg.txt', text: json_beauty)
                    sh "ls -l"
                }
            }
