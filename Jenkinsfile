@@ -81,7 +81,8 @@ pipeline {
                                      ]
                                  }'''
                   def jsonSlurper = new JsonSlurper()
-                  cfg = jsonSlurper.parseText(json_str)                  
+                  cfg = jsonSlurper.parseText(jsonStr) 
+                  writeJSON file: 'pas.json', json: cfg
                   def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(jsonStr))
                    writeFile(file: 'zorg.txt', text: cfg)
                    sh "ls -l"
