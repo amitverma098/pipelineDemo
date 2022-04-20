@@ -81,10 +81,9 @@ pipeline {
                                      ]
                                  }'''
                   def jsonSlurper = new JsonSlurper()
-                  cfg = jsonSlurper.parseText(json_str)
-                  writeJSON file: 'eas.json', json: cfg
+                  cfg = jsonSlurper.parseText(json_str)                  
                   def json_beauty = JsonOutput.prettyPrint(JsonOutput.toJson(jsonStr))
-                   writeFile(file: 'zorg.txt', text: json_beauty)
+                   writeFile(file: 'zorg.txt', text: cfg)
                    sh "ls -l"
                }
            }
